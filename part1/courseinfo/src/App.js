@@ -4,13 +4,19 @@ const Header = (props) => {
   return <h1>{props.course}</h1>
 }
 
+const Part = (props) => {
+  return (
+    <p>
+      {props.part} {props.exercises}
+    </p>
+  )
+}
+
 const Content = (props) => {
   return (
     <>
-      {Object.entries(props.elements).map((value) => (
-        <p>
-          {value[0]} {value[1]}
-        </p>
+      {Object.entries(props.elements).map((value, key) => (
+        <Part key={key} part={value[0]} exercises={value[1]} />
       ))}
     </>
   )
