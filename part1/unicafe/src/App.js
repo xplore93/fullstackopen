@@ -11,13 +11,31 @@ const Buttons = ({ handleClicks, text }) =>
     <Button key={index} handleClick={element} text={text[index]} />
   ))
 
-const Statistics = ({ text, values }) =>
+const CountByFeedback = ({ text, values }) =>
   text.map((element, index) => (
     <span key={index}>
       {element} {values[index]}
       <br />
     </span>
   ))
+
+const Statistics = ({ text, values }) => {
+  const all = values.reduce((a, b) => a + b)
+  const divideBy = all || 1
+  const avg = (values[0] - values[2]) / divideBy
+  const positive = (100 / divideBy) * values[0]
+
+  return (
+    <>
+      <CountByFeedback text={text} values={values} />
+      all {all}
+      <br />
+      average {avg}
+      <br />
+      positive {positive} %
+    </>
+  )
+}
 
 const App = () => {
   // save clicks of each button to its own state
