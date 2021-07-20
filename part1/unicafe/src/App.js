@@ -27,12 +27,18 @@ const Statistics = ({ text, values }) => {
 
   return (
     <>
-      <CountByFeedback text={text} values={values} />
-      all {all}
-      <br />
-      average {avg}
-      <br />
-      positive {positive} %
+      {all ? (
+        <>
+          <CountByFeedback text={text} values={values} />
+          all {all}
+          <br />
+          average {avg}
+          <br />
+          positive {positive} %
+        </>
+      ) : (
+        <p>No feedback given</p>
+      )}
     </>
   )
 }
