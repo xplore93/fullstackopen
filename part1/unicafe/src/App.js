@@ -11,13 +11,11 @@ const Buttons = ({ handleClicks, text }) =>
     <Button key={index} handleClick={element} text={text[index]} />
   ))
 
-const CountByFeedback = ({ text, values }) =>
-  text.map((element, index) => (
-    <span key={index}>
-      {element} {values[index]}
-      <br />
-    </span>
-  ))
+const Statistic = ({ text, value }) => (
+  <p>
+    {text} {value}
+  </p>
+)
 
 const Statistics = ({ text, values }) => {
   const all = values.reduce((a, b) => a + b)
@@ -29,15 +27,15 @@ const Statistics = ({ text, values }) => {
     <>
       {all ? (
         <>
-          <CountByFeedback text={text} values={values} />
-          all {all}
-          <br />
-          average {avg}
-          <br />
-          positive {positive} %
+          {text.map((element, index) => (
+            <Statistic key={index} text={element} value={values[index]} />
+          ))}
+          <Statistic text={'all'} value={all} />
+          <Statistic text={'average'} value={avg} />
+          <Statistic text={'positive'} value={`${positive} %`} />
         </>
       ) : (
-        <p>No feedback given</p>
+        <Statistic text={'No feedback given'} />
       )}
     </>
   )
