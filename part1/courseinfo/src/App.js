@@ -1,30 +1,30 @@
 import React from 'react'
 
-const Header = (props) => {
-  return <h1>{props.course.name}</h1>
+const Header = ({ course }) => {
+  return <h1>{course.name}</h1>
 }
 
-const Part = (props) => {
+const Part = ({ part, exercises }) => {
   return (
     <p>
-      {props.part} {props.exercises}
+      {part} {exercises}
     </p>
   )
 }
 
-const Content = (props) => {
+const Content = ({ course }) => {
   return (
     <>
-      {props.course.parts.map((value, key) => {
+      {course.parts.map((value, key) => {
         return <Part key={key} part={value.name} exercises={value.exercises} />
       })}
     </>
   )
 }
 
-const Total = (props) => {
+const Total = ({ course }) => {
   let total = 0
-  props.course.parts.forEach((element) => {
+  course.parts.forEach((element) => {
     total += element.exercises
   })
 
