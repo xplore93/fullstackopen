@@ -12,9 +12,10 @@ const Buttons = ({ handleClicks, text }) =>
   ))
 
 const Statistic = ({ text, value }) => (
-  <p>
-    {text} {value}
-  </p>
+  <tr>
+    <td>{text}</td>
+    <td>{value}</td>
+  </tr>
 )
 
 const Statistics = ({ text, values }) => {
@@ -26,16 +27,18 @@ const Statistics = ({ text, values }) => {
   return (
     <>
       {all ? (
-        <>
-          {text.map((element, index) => (
-            <Statistic key={index} text={element} value={values[index]} />
-          ))}
-          <Statistic text={'all'} value={all} />
-          <Statistic text={'average'} value={avg} />
-          <Statistic text={'positive'} value={`${positive} %`} />
-        </>
+        <table>
+          <tbody>
+            {text.map((element, index) => (
+              <Statistic key={index} text={element} value={values[index]} />
+            ))}
+            <Statistic text={'all'} value={all} />
+            <Statistic text={'average'} value={avg} />
+            <Statistic text={'positive'} value={`${positive} %`} />
+          </tbody>
+        </table>
       ) : (
-        <Statistic text={'No feedback given'} />
+        <p>No feedback given</p>
       )}
     </>
   )
